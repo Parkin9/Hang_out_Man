@@ -16,7 +16,7 @@
 <body>
 
 <div id="container">
-    <div id="title">Hang out, Man!</div>
+    <div id="title">Hang out, Man!${x}</div>
     <hr/>
     <div id="board"></div>
     <div id="picture">
