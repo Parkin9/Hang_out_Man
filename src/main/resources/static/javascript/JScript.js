@@ -3,16 +3,11 @@ var no = new Audio("sound/no.wav");
 var win = new Audio("sound/win.wav");
 var defeat = new Audio("sound/defeat.wav");
 var pictureNum = 0;
-var passwords = [
-    "Constantine", "Piraci z Karaibów", "Gwiezdne Wojny",
-    "Terminator", "M jak miłość", "Lalaland", "Helikopter w ogniu",
-    "Dzinnik Bridget Jones", "Sami swoi", "Duma i uprzedzenie", "Poranek kojota",
-    "Chłopaki nie płaczą", "Bękarty wojny", "Pulp fiction", "Dark Knight"];
 
-var password = "";
-password = passwords[Math.floor((Math.random() * passwords.length))];
+var password = document.getElementById("model").value;
 password = password.toUpperCase();
 //console.log(password);
+
 
 var passwordDash = "";
 for(var i = 0; i<password.length; i++) {

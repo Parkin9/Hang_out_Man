@@ -11,6 +11,7 @@ public class HangOutManApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

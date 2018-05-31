@@ -1,8 +1,8 @@
 package pl.parkin9.Hang_out_Man.service;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public interface CodewordService {
 
-    String codeword() throws FileNotFoundException;
+    String getRandCodeword() throws IOException;
 }

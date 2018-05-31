@@ -6,20 +6,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.parkin9.Hang_out_Man.service.CodewordService;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @Controller
 public class IndexController {
 
-//    @Autowired
-//    private CodewordService codewordService;
+    private final CodewordService codewordService;
+
+    @Autowired
+    public IndexController(CodewordService codewordService) {
+        this.codewordService = codewordService;
+    }
+
+//////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/")
-    public ModelAndView showIndexForm() throws FileNotFoundException {
+    public ModelAndView showIndexForm() throws IOException {
 
-//        String x = codewordService.codeword();
+        String codeword = codewordService.getRandCodeword();
         ModelAndView modelAndView = new ModelAndView("index");
-//        modelAndView.addObject("x", x);
+        modelAndView.addObject("codeword", codeword);
 
         return modelAndView;
     }

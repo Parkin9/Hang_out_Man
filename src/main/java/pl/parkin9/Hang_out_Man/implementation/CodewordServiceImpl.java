@@ -3,27 +3,32 @@ package pl.parkin9.Hang_out_Man.implementation;
 import org.springframework.stereotype.Service;
 import pl.parkin9.Hang_out_Man.service.CodewordService;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class CodewordServiceImpl implements CodewordService {
 
     @Override
-    public String codeword() throws FileNotFoundException {
+    public String getRandCodeword() throws IOException {
 
-        File file = new File("/home/parkin9/Documents/IntelliJ_projects/Hang_out_Man/src/main/resources/static/codeword.txt");
-        Scanner in = new Scanner(file);
+        String filePath = "fileResource/codeword.txt";
+        String codeword;
+        String line;
+        ArrayList <String> codewordList = new ArrayList<>();
 
-        String codeword = "";
+        try (BufferedReader bufferedFile = new BufferedReader(new FileReader(filePath))) {
 
-        int count = 0;
-        while(in.hasNextLine()) {
-            count++;
-            in.nextLine();
+            while((line = bufferedFile.readLine()) != null) {
+                codewordList.add(line);
+            }
+
+            int randNum = ThreadLocalRandom.current().nextInt(codewordList.size() - 1);
+            codeword = codewordList.get(randNum);
         }
-        codeword = String.valueOf(count);
 
         return codeword;
     }
