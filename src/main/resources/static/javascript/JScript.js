@@ -4,7 +4,7 @@ var win = new Audio("sound/win.wav");
 var defeat = new Audio("sound/defeat.wav");
 var pictureNum = 0;
 
-var password = document.getElementById("model").value;
+var password = document.getElementById("modelCodeword").value;
 password = password.toUpperCase();
 //console.log(password);
 
