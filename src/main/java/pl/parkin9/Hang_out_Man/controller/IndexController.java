@@ -45,7 +45,7 @@ public class IndexController {
     }
 
     @GetMapping("/game")
-    public ModelAndView showGame() throws IOException {
+    public ModelAndView showGameGet() throws IOException {
 
         ModelAndView modelAndView = new ModelAndView("game");
 
