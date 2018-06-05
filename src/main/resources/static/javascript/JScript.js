@@ -4,7 +4,7 @@ var win = new Audio("sound/win.wav");
 var defeat = new Audio("sound/defeat.wav");
 var pictureNum = 0;
 
-var password = document.getElementById("modelCodeword").value;
+var password = $("#modelCodeword").val();
 password = password.toUpperCase();
 //console.log(password);
 
@@ -12,7 +12,7 @@ password = password.toUpperCase();
 var passwordDash = "";
 for(var i = 0; i<password.length; i++) {
 
-    if(password.charAt(i) === " ") {
+    if(password.charAt(i) == " ") {
 
         passwordDash = passwordDash + " ";
     } else {
@@ -24,7 +24,7 @@ for(var i = 0; i<password.length; i++) {
 
 function writePassword() {
 
-    document.getElementById("board").innerHTML = passwordDash;
+    $("#board").html(passwordDash);
 }
 
 
@@ -53,13 +53,13 @@ function start() {
 
         var element = "lett" + i;
         divContent = divContent + '<div class="letter" onclick="checkLetter('+ i +')" id="'+ element +'">'+ letters[i] +'</div>';
-        if((i+1) %7 === 0) {
+        if((i+1) %7 == 0) {
 
             divContent = divContent + '<div style="clear: both;"></div>';
         }
     }
 
-    document.getElementById("alphabet").innerHTML = divContent;
+    $("#alphabet").html(divContent);
     writePassword();
 }
 
@@ -83,48 +83,48 @@ function checkLetter(num) {
 
     for (i = 0; i < password.length; i++) {
 
-        if (password.charAt(i) === letters[num]) {
+        if (password.charAt(i) == letters[num]) {
 
             passwordDash = passwordDash.setCharAt(i, letters[num]);
             hitLetter = true;
         }
     }
 
-    if (hitLetter === true) {
+    if (hitLetter == true) {
 
         yes.play();
 
-        element = "lett" + num;
-        document.getElementById(element).style.background = "#003300";
-        document.getElementById(element).style.color = "#00C000";
-        document.getElementById(element).style.border = "3px solid #00C000";
-        document.getElementById(element).style.cursor = "default";
+        element = "#lett" + num;
+        $(element).css('background', "#003300");
+        $(element).css('color', "#00C000");
+        $(element).css('border', "3px solid #00C000");
+        $(element).css('cursor', "default");
 
         writePassword();
     } else {
 
         no.play();
 
-        element = "lett" + num;
-        document.getElementById(element).style.background = "#330000";
-        document.getElementById(element).style.color = "#C00000";
-        document.getElementById(element).style.border = "3px solid #C00000";
-        document.getElementById(element).style.cursor = "default";
-        document.getElementById(element).setAttribute("onclick", ";");
+        element = "#lett" + num;
+        $(element).css('background', "#330000");
+        $(element).css('color', "#C00000");
+        $(element).css('border', "3px solid #C00000");
+        $(element).css('cursor', "default");
+        $(element).attr("onclick", ";");
 
         pictureNum++;
-        document.getElementById("picture").innerHTML = '<img src="img/s'+ pictureNum +'.jpg" alt=""/>'
+        $("#picture").html('<img src="img/s'+ pictureNum +'.jpg" alt=""/>');
     }
 
     //win
-    if(password === passwordDash) {
+    if(password == passwordDash) {
         win.play();
-        document.getElementById("alphabet").innerHTML = 'Udało się! <br/>'+ password + '<br/><br/><span class="reset" onclick="location.reload()">Jeszcze raz?</span>';
+        $("#alphabet").html('Udało się! <br/>'+ password + '<br/><br/><span class="reset" onclick="location.reload()">Jeszcze raz?</span>');
     }
 
     //defeat
     if(pictureNum >= 9) {
         defeat.play();
-        document.getElementById("alphabet").innerHTML = 'Przegrana... <br/>'+ password + '<br/><br/><span class="reset" onclick="location.reload()">Jeszcze raz?</span>';
+        $("#alphabet").html('Przegrana... <br/>'+ password + '<br/><br/><span class="reset" onclick="location.reload()">Jeszcze raz?</span>');
     }
 }

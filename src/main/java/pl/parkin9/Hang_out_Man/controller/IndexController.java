@@ -36,7 +36,7 @@ public class IndexController {
     @PostMapping("/")
     public ModelAndView showIndexPost(HttpServletRequest request) {
 
-        ModelAndView modelAndView = new ModelAndView("redirect:game");
+        ModelAndView modelAndView = new ModelAndView("redirect:/game");
 
         String player1name = request.getParameter("player1name");
         String player2name = request.getParameter("player2name");
