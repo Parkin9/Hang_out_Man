@@ -38,8 +38,9 @@ public class IndexController {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/game");
 
-        String player1name = request.getParameter("player1name");
-        String player2name = request.getParameter("player2name");
+        //TODO
+        //String player1name = request.getParameter("player1name");
+        //String player2name = request.getParameter("player2name");
 
         return modelAndView;
     }

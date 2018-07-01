@@ -1,34 +1,40 @@
 package pl.parkin9.Hang_out_Man.implementation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.parkin9.Hang_out_Man.service.CodewordService;
+import pl.parkin9.Hang_out_Man.service.ReadFromFile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
+ /*
+ * The class draws the Codeword from the list of codewords.
+ */
 
 @Service
 public class CodewordServiceImpl implements CodewordService {
 
+    private final ReadFromFile readFromFile;
+
+    @Autowired
+    public CodewordServiceImpl(ReadFromFile readFromFile) {
+        this.readFromFile = readFromFile;
+    }
+
+////////////////////////////////////////////////////////////////////
+
     @Override
     public String getRandCodeword() throws IOException {
 
-        String filePath = "fileResource/codeword.txt";
         String codeword;
-        String line;
-        ArrayList <String> codewordList = new ArrayList<>();
 
-        try (BufferedReader bufferedFile = new BufferedReader(new FileReader(filePath))) {
+        List<String> codewordList = readFromFile.getContentFile();
 
-            while((line = bufferedFile.readLine()) != null) {
-                codewordList.add(line);
-            }
+        int randNum = ThreadLocalRandom.current().nextInt(codewordList.size() - 1);
 
-            int randNum = ThreadLocalRandom.current().nextInt(codewordList.size() - 1);
-            codeword = codewordList.get(randNum);
-        }
+        codeword = codewordList.get(randNum);
 
         return codeword;
     }
